@@ -1,7 +1,13 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
+import Todo from 'src/models/Todo'
+import TodoList from 'src/models/TodoList'
+import VuexORM from '@vuex-orm/core'
 
-// import example from './module-example'
+const database = new VuexORM.Database()
+
+database.register(Todo)
+database.register(TodoList)
 
 /*
  * If not building with SSR mode, you can
@@ -14,9 +20,7 @@ import { createStore } from 'vuex'
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
-    modules: {
-      // example
-    },
+    plugins: [VuexORM.install(database)],
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
