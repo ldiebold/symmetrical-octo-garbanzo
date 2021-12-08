@@ -1,8 +1,8 @@
 <template>
   <q-btn
-    @click="increment"
     :label="myNumber"
     v-bind="$attrs"
+    @click="increment"
   />
   {{ doubled }}
 </template>
