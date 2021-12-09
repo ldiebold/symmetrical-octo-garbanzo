@@ -1,4 +1,5 @@
 import { Model } from '@vuex-orm/core'
+import TodoList from './TodoList'
 
 export default class Todo extends Model {
   static entity = 'todos'
@@ -7,7 +8,9 @@ export default class Todo extends Model {
     return {
       id: this.attr(null),
       label: this.attr(null),
-      complete: this.attr(false)
+      complete: this.attr(false),
+      todo_list_id: this.attr(null),
+      todo_list: this.belongsTo(TodoList, 'todo_list_id')
     }
   }
 }
