@@ -8,6 +8,10 @@ const routes = [
       {
         path: 'list/:todoListId',
         component: () => import('pages/IndexPage.vue')
+      },
+      {
+        path: 'date',
+        component: () => import('pages/DatePage.vue')
       }
     ]
   },
