@@ -1,0 +1,19 @@
+{
+  "label": "Todo",
+  "fields": {
+    "label": {
+      "type": "string",
+      "form": {
+        "label": "Task",
+        "type": "string"
+      }
+    },
+    "complete": {
+      "type": "boolean",
+      "form": {
+        "label": "Complete",
+        "type": "boolean"
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>{{ fullName }}</div>
       </q-toolbar>
     </q-header>
 
@@ -47,13 +47,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import CreateTodoListButton from 'src/components/CreateTodoListButton.vue'
 import TodoList from 'src/components/TodoList.vue'
+import { useAuth } from 'src/store/pinia/useAuth'
+import { useLayout } from 'src/store/pinia/useLayout'
 
-const leftDrawerOpen = ref(false)
+const { fullName } = useAuth()
 
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+const { toggleLeftDrawer } = useLayout()
+const { leftDrawerOpen } = storeToRefs(useLayout())
 </script>

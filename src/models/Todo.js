@@ -1,8 +1,10 @@
 import { Model } from '@vuex-orm/core'
 import TodoList from './TodoList'
+import TodoSchema from './TodoSchema.json'
 
 export default class Todo extends Model {
   static entity = 'todos'
+  static schema = TodoSchema
 
   static fields () {
     return {

@@ -3,6 +3,7 @@ import BDialogButton from './base/BDialogButton.vue'
 import useModel from 'src/composables/useModel'
 import { ref } from 'vue'
 import Todo from 'src/models/Todo'
+import BModelForm from './base/BModelForm.vue'
 
 const props = defineProps({
   todoListId: {
@@ -34,19 +35,31 @@ async function createTodoButtonClicked () {
 <template>
   <BDialogButton ref="dialogButton">
     <q-card-section>
-      <q-form>
-        <q-input
-          v-model="form.label"
-          label="title"
-          filled
-        />
-        <q-btn
-          label="Create"
-          class="q-mt-md"
-          :loading="creatingTodo"
-          @click="createTodoButtonClicked"
-        />
-      </q-form>
+      <BModelForm
+        v-model="form"
+        :schema="Todo.schema"
+        :input-props="{
+          color: 'green',
+          filled: true,
+          class: 'q-mb-sm'
+        }"
+      >
+        <template #field-label="scope">
+          <q-input
+            :model-value="scope.modelValue"
+            @update:model-value="scope.onUpdateModelValue"
+          />
+        </template>
+
+        <template #bottom>
+          <q-btn
+            label="Create"
+            class="q-mt-md"
+            :loading="creatingTodo"
+            @click="createTodoButtonClicked"
+          />
+        </template>
+      </BModelForm>
     </q-card-section>
   </BDialogButton>
 </template>

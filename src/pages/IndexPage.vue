@@ -10,6 +10,11 @@
       </q-list>
     </q-card>
 
+    <q-btn
+      label="open drawer"
+      @click="leftDrawerOpen = !leftDrawerOpen"
+    />
+
     <q-page-sticky
       position="bottom-right"
       :offset="[28, 28]"
@@ -31,6 +36,8 @@ import Todo from 'src/models/Todo'
 import CreateTodoButton from 'src/components/CreateTodoButton.vue'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
+import { useLayout } from 'src/store/pinia/useLayout'
+import { storeToRefs } from 'pinia'
 
 const route = useRoute()
 
@@ -40,4 +47,6 @@ fetchTodos()
 const todosFiltered = computed(() => {
   return todos.value.filter(todo => todo.todo_list_id === parseInt(route.params.todoListId))
 })
+
+const { leftDrawerOpen } = storeToRefs(useLayout())
 </script>
